@@ -25,10 +25,6 @@ class BubbleTea(ABC):
         self.__toppings = toppings
         self.__price = price
 
-
-def calculate_tea_price(self):
-    pass
-
 # getters
 def get_name(self):
     return self.__name
@@ -51,37 +47,55 @@ def get_toppings(self):
 def get_price(self):
     return self.__price
 
-# class for fruit tea
+# abstract method and function for calculating tea price
+@abstractmethod
+def calculate_tea_price(self):
+    pass
+
+# function for adding topping
+def add_topping(self, topping):
+    pass
+
+# function for removing topping
+def remove_topping(self, topping):
+    pass
+
+# class for fruit tea inheriting from parent class BubbleTea
 class FruitTea(BubbleTea):
     def __init__(self):
-        super().__init__()
-pass
+        def calculate_price(self):
+            price = self.base_tea_price
+        if self.size == "Medium":
+            price = price + 0.85
+        elif self.size == "Large":
+            price = price + 1.2
+        return price 
 
-# class for milk tea
+# class for milk tea inheriting from parent class BubbleTea
 class MilkTea(BubbleTea):
     def __init__(self):
         super().__init__()
 pass
 
-# class for sparkling tea
+# class for sparkling tea inheriting from parent class BubbleTea
 class SparklngTea(BubbleTea):
     def __init__(self):
         super().__init__()
         pass
     
-# class for hot tea
-class HotTea(BubbleTea):
+# class for hot tea inheriting from parent class BubbleTea
+class HotTea(BubbleTea): 
     def __init__(self):
         super().__init__()
         pass
 
-# class for frozen tea
+# class for frozen tea inheriting from parent class BubbleTea
 class FrozenTea(BubbleTea):
     def __init__(self):
         super().__init__()
         pass
 
-# class for topping
+# class for topping inheriting from parent class BubbleTea
 class Topping(BubbleTea):
     def __init__(self):
         super().__init__()
