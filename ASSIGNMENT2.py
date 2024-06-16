@@ -52,6 +52,8 @@ def get_price(self):
 def calculate_tea_price(self):
     pass
 
+def __str__(self):
+    
 # function for adding topping
 def add_topping(self, topping):
     pass
