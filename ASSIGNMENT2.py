@@ -13,7 +13,7 @@ import random
 # import abstract class
 from abc import ABC, abstractmethod
 
-# class for bubble tea
+# class for bubble tea, using encapsulation by making the variabes private
 class BubbleTea(ABC):
     base_tea_price = 4.5
     def __init__(self, name, size, level_of_ice, level_of_sugar, green_or_black_tea, toppings, price):
@@ -46,21 +46,32 @@ def get_toppings(self):
 
 def get_price(self):
     return self.__price
+    
+# function for adding topping
+def add_topping(self, toppings):
+    for topping in toppings:
+        if topping not in self.toppings:
+            self.toppings.append(topping)
+            print(f"{topping} has been added to your bubble tea! :)")
+        else:
+            print(f"{topping} has already been added to your bubble tea.")
+        
+
+# function for removing topping
+def remove_topping(self, topping):
+    for topping in toppings:
+        if topping not in self.toppings:
+            self.toppings.remove(topping)
+            print(f"{topping} has been removed from your bubble tea! :)")
+        else:
+            print(f"{topping} has already been removed from your bubble tea.")
 
 # abstract method and function for calculating tea price
 @abstractmethod
 def calculate_tea_price(self):
     pass
 
-def __str__(self):
-    
-# function for adding topping
-def add_topping(self, topping):
-    pass
-
-# function for removing topping
-def remove_topping(self, topping):
-    pass
+# def __str__(self):
 
 # class for fruit tea inheriting from parent class BubbleTea
 class FruitTea(BubbleTea):
