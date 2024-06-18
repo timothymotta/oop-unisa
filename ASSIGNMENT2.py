@@ -222,31 +222,44 @@ class Store:
             }
         }
 
+    # function to order tea
     def order_tea(self, tea_class, name, size, ice_level, sugar_level, tea_type, toppings):
         tea = tea_class(name, size, ice_level, sugar_level, tea_type, toppings)
-        self.earnings += tea.calculate_price()
+        self.earnings = self.earnings + tea.calculate_price()
         self.orders.append(tea)
         return tea
 
+    # function to store order history
     def view_order_history(self):
         for order in self.orders:
             print(order)
 
     # string converter 
     def __str__(self):
-        return f'Total Earnings: ${self.earnings:.2f}, Total Orders: {len(self.orders)}'
+        return f'Total Earnings: \n${self.earnings:.2f}, \nTotal Orders: \n{len(self.orders)}\n'
 
 def main():
     store = Store()
 
     mango_topping = Topping("Mango", 0.3)
     lychee_topping = Topping("Lychee", 0.1)
+    strawberry_topping = Topping("Strawberry", 0.4)
+
+    print("|=================================================================================================|\n")
+    print("|                    ░█▀▀█ ░█─░█ ░█▀▀█ ░█▀▀█ ░█─── ░█▀▀▀ 　 ▀▀█▀▀ ░█▀▀▀ ─█▀▀█                     |")
+    print("|                    ░█▀▀▄ ░█─░█ ░█▀▀▄ ░█▀▀▄ ░█─── ░█▀▀▀ 　 ─░█── ░█▀▀▀ ░█▄▄█                     |")
+    print("|                    ░█▄▄█ ─▀▄▄▀ ░█▄▄█ ░█▄▄█ ░█▄▄█ ░█▄▄▄ 　 ─░█── ░█▄▄▄ ░█─░█                     |\n")
+    print("|=================================================================================================|")
 
     store.order_tea(FruitTea, "Tropical Fruit Tea", "Large", "Regular", "Full", "Green", [mango_topping, lychee_topping])
     store.order_tea(MilkTea, "Classic Milk Tea", "Medium", "Less", "Half", "Black", [lychee_topping])
     store.order_tea(SparklingTea, "Sparkling Lemon Tea", "Small", "Full", "Full", "Green", [mango_topping])
     store.order_tea(HotTea, "Hot Earl Grey Tea", "Large", "None", "None", "Black", [])
     store.order_tea(FrozenTea, "Frozen Mango Tea", "Medium", "Regular", "Full", "Green", [mango_topping])
+    
+    store.order_tea(FruitTea, "Tropical Fruit Tea", "Large", "Regular", "Full", "Green", [mango_topping, lychee_topping])
+
+    
     
     # display store
     print(store)
