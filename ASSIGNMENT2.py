@@ -8,91 +8,80 @@ Username: motty001
 This is my own work as defined by the University's Academic Misconduc Policy
 '''
 
-
 import random
 # import abstract class
 from abc import ABC, abstractmethod
 
-# class for bubble tea, using encapsulation by making the variabes private
+# class for bubble tea, using encapsulation by making the variables private
 class BubbleTea(ABC):
     base_tea_price = 4.5
-    def __init__(self, name, size, level_of_ice, level_of_sugar, green_or_black_tea, toppings, price):
+
+    def __init__(self, name, size, level_of_ice, level_of_sugar, green_or_black_tea, toppings):
         self.__name = name
         self.__size = size
         self.__level_of_ice = level_of_ice
         self.__level_of_sugar = level_of_sugar
         self.__green_or_black_tea = green_or_black_tea
         self.__toppings = toppings
-        self.__price = price
 
-# getters
-@property
-def get_name(self):
-    return self.__name
+    # getters
+    @property
+    def name(self):
+        return self.__name
 
-@property
-def get_size(self):
-    return self.__size
+    @property
+    def size(self):
+        return self.__size
 
-@property
-def get_level_of_ice(self):
-    return self.__level_of_ice
+    @property
+    def level_of_ice(self):
+        return self.__level_of_ice
 
-@property
-def get_level_of_sugar(self):
-    return self.__level_of_sugar
+    @property
+    def level_of_sugar(self):
+        return self.__level_of_sugar
 
-@property
-def get_green_or_black_tea(self):
-    return self.__green_or_blac_tea
+    @property
+    def green_or_black_tea(self):
+        return self.__green_or_black_tea
 
-@property
-def get_toppings(self):
-    return self.__toppings
+    @property
+    def toppings(self):
+        return self.__toppings
 
-@property
-def get_price(self):
-    return self.__price
+    @abstractmethod
+    def calculate_price(self):
+        pass
 
-# string converter
-def __str__(self):
+    def __str__(self):
         toppings_str = ', '.join([str(t) for t in self.toppings])
         return (f'{self.name} ({self.size}, {self.green_or_black_tea} tea, '
                 f'Ice: {self.level_of_ice}, Sugar: {self.level_of_sugar}, '
-                f'Toppings: {self.toppings})')
-           
-# function for adding topping
-def add_topping(self, toppings):
-    for topping in toppings:
+                f'Toppings: {toppings_str})')
+
+    # function for adding topping
+    def add_topping(self, topping):
         if topping not in self.toppings:
             self.toppings.append(topping)
             print(f"{topping} has been added to your bubble tea! :)")
         else:
             print(f"{topping} has already been added to your bubble tea.")
-        
 
-# function for removing topping
-def remove_topping(self, topping):
-    for topping in toppings:
-        if topping not in self.toppings:
+    # function for removing topping
+    def remove_topping(self, topping):
+        if topping in self.toppings:
             self.toppings.remove(topping)
             print(f"{topping} has been removed from your bubble tea! :)")
         else:
-            print(f"{topping} has already been removed from your bubble tea.")           
-      
-# abstract method and function for calculating tea price
-@abstractmethod
-def calculate_tea_price(self):
-    pass
+            print(f"{topping} is not in your bubble tea.")
 
 # class for fruit tea inheriting from parent class BubbleTea
 class FruitTea(BubbleTea):
     def __init__(self, name, size, level_of_ice, level_of_sugar, green_or_black_tea, type_of_fruit):
-        super().__init__ (name, size, level_of_ice, level_of_sugar, green_or_black_tea, type_of_fruit)
-        self.type_of_fruit = type_of_fruit 
-        
+        super().__init__(name, size, level_of_ice, level_of_sugar, green_or_black_tea, type_of_fruit)
+
     # calculating the price of fruit tea based on the size and topping choices
-    def calculate_price(self, prices):
+    def calculate_price(self):
         price = self.base_tea_price
         if self.size == "Medium":
             price = price + 0.85
@@ -100,16 +89,15 @@ class FruitTea(BubbleTea):
             price = price + 1.2
         elif self.size == 'Small':
             price = price + 0
-            
         for topping in self.toppings:
-            price += topping.price
+            price = price + topping.price
         return price
 
 # class for milk tea inheriting from parent class BubbleTea
 class MilkTea(BubbleTea):
-    def __init__(self, name, size, level_of_ice, level_of_sugar, green_or_black_tea, type_of_fruit):
-        super().__init__(name, size, level_of_ice, level_of_sugar, green_or_black_tea, type_of_fruit)
-    
+    def __init__(self, name, size, level_of_ice, level_of_sugar, green_or_black_tea, toppings):
+        super().__init__(name, size, level_of_ice, level_of_sugar, green_or_black_tea, toppings)
+
     # calculating price for milk tea based on size and topping choices
     def calculate_price(self):
         price = self.base_tea_price + 0.29
@@ -119,17 +107,16 @@ class MilkTea(BubbleTea):
             price = price + 1.2
         elif self.size == 'Small':
             price = price + 0
-            
         for topping in self.toppings:
-            price = price + topping.price
-
+            price = price + topping.price 
         return price
 
 # class for sparkling tea inheriting from parent class BubbleTea
 class SparklingTea(BubbleTea):
-    def __init__(self):
-        super().__init__()
-            # calculating price for sparkling tea based on size and topping choices     
+    def __init__(self, name, size, level_of_ice, level_of_sugar, green_or_black_tea, toppings):
+        super().__init__(name, size, level_of_ice, level_of_sugar, green_or_black_tea, toppings)
+
+    # calculating price for sparkling tea based on size and topping choices
     def calculate_price(self):
         price = self.base_tea_price + 0.19
         if self.size == 'Medium':
@@ -138,16 +125,15 @@ class SparklingTea(BubbleTea):
             price = price + 1.2
         elif self.size == 'Small':
             price = price + 0
-            
         for topping in self.toppings:
             price = price + topping.price
-
         return price
-    
+
 # class for hot tea inheriting from parent class BubbleTea
-class HotTea(BubbleTea): 
-    def __init__(self):
-        super().__init__()
+class HotTea(BubbleTea):
+    def __init__(self, name, size, level_of_ice, level_of_sugar, green_or_black_tea, toppings):
+        super().__init__(name, size, level_of_ice, level_of_sugar, green_or_black_tea, toppings)
+
     def calculate_price(self):
         price = self.base_tea_price + 0.24
         if self.size == 'Medium':
@@ -156,51 +142,48 @@ class HotTea(BubbleTea):
             price = price + 1.2
         elif self.size == 'Small':
             price = price + 0
-            
         for topping in self.toppings:
             price = price + topping.price
-
         return price
 
 # class for frozen tea inheriting from parent class BubbleTea
 class FrozenTea(BubbleTea):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, name, size, level_of_ice, level_of_sugar, green_or_black_tea, toppings):
+        super().__init__(name, size, level_of_ice, level_of_sugar, green_or_black_tea, toppings)
+
     def calculate_price(self):
-        price =  self.base_tea_price + 3.0
+        price = self.base_tea_price + 3.0
         if self.size == 'Medium':
             price = price + 0.85
         elif self.size == 'Large':
             price = price + 1.2
         elif self.size == 'Small':
             price = price + 0
-            
         for topping in self.toppings:
             price = price + topping.price
-
         return price
-        
-# class for topping inheriting from parent class BubbleTea
-class Topping(BubbleTea):
-     def __init__(self, name, price):
+
+# class for topping
+class Topping:
+    def __init__(self, name, price):
         self.__name = name
         self.__price = price
 
-# getters for topping class
-@property
-def get_topping_name(self):
-    return self.__name
+    @property
+    def name(self):
+        return self.__name
 
-@property
-def get_topping_price(self):
-    return self.__price
-    
-def __str__(self):
-    return f'{self.name} (${self.price:.2f})'
+    @property
+    def price(self):
+        return self.__price
+
+    # string converter, converts name and price to string, price is 2 decimal places
+    def __str__(self):
+        return f'{self.name} (${self.price:.2f})'
 
 # class for store, contains functions that order and/or create tea
 class Store:
-     def __init__(self):
+    def __init__(self):
         self.earnings = 0.0
         self.orders = []
         self.prices = {
@@ -238,21 +221,21 @@ class Store:
                 'Strawberry Popping Pearls': 0.4, 'Apple Popping Pearls': 0.4,
             }
         }
-        
-# function for ordering tea
-def order_tea(self, tea_class, name, size, ice_level, sugar_level, tea_type, toppings):
+
+    def order_tea(self, tea_class, name, size, ice_level, sugar_level, tea_type, toppings):
         tea = tea_class(name, size, ice_level, sugar_level, tea_type, toppings)
-        self.earnings = self.earnings + tea.calculate_price()
+        self.earnings += tea.calculate_price()
         self.orders.append(tea)
         return tea
 
-def view_order_history(self):
+    def view_order_history(self):
         for order in self.orders:
             print(order)
 
-def __str__(self):
+    # string converter 
+    def __str__(self):
         return f'Total Earnings: ${self.earnings:.2f}, Total Orders: {len(self.orders)}'
-       
+
 def main():
     store = Store()
 
@@ -264,7 +247,8 @@ def main():
     store.order_tea(SparklingTea, "Sparkling Lemon Tea", "Small", "Full", "Full", "Green", [mango_topping])
     store.order_tea(HotTea, "Hot Earl Grey Tea", "Large", "None", "None", "Black", [])
     store.order_tea(FrozenTea, "Frozen Mango Tea", "Medium", "Regular", "Full", "Green", [mango_topping])
-
+    
+    # display store
     print(store)
     store.view_order_history()
 
