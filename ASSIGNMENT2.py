@@ -1,11 +1,10 @@
 '''
-File:
-Description: This is a program made for a bubble tea store which implements the use of different Object Oriented Programming techniques. 
-It also uses different classes and functions to perform different things in the program. 
+File: ASSIGNMENT2.py
+Description: This is the main file which runs the code.
 Author: Timothy Motta
 ID: 110401113
 Username: motty001
-This is my own work as defined by the University's Academic Misconduc Policy
+This is my own work as defined by the University's Academic Misconduc Policy.
 '''
 
 import random
@@ -55,9 +54,9 @@ class BubbleTea(ABC):
 
     def __str__(self):
         toppings_str = ", ".join([str(t) for t in self.toppings])
-        return (f"{self.name} ({self.size}, {self.green_or_black_tea} tea, "
-                f"Ice: {self.level_of_ice}, Sugar: {self.level_of_sugar}, "
-                f"Toppings: {toppings_str})")
+        return (f"TEA: {self.name} ({self.size}, {self.green_or_black_tea} tea) "
+                f"\nAMOUNT OF ICE: {self.level_of_ice} \nAMOUNT OF SUGAR: {self.level_of_sugar} "
+                f"\nTOPPINGS: {toppings_str})\n")
 
     # function for adding topping
     def add_topping(self, topping):
@@ -165,9 +164,13 @@ class FrozenTea(BubbleTea):
 
 # class for topping
 class Topping:
-    def __init__(self, name, price):
+    def __init__(self, name, store_prices):
         self.__name = name
-        self.__price = price
+        # self.__price = price
+        if name in store_prices["TOPPINGS"]:
+            self.__price = store_prices["TOPPINGS"][name]
+        else:
+            self.__price = 0 
 
     @property
     def name(self):
@@ -241,9 +244,19 @@ class Store:
 def main():
     store = Store()
 
-    mango_topping = Topping("Mango", 0.3)
-    lychee_topping = Topping("Lychee", 0.1)
-    strawberry_topping = Topping("Strawberry", 0.4)
+    # toppings
+    custard_topping = Topping("Custard", store.prices)
+    mousse_topping = Topping("Mousse", store.prices)
+    pearls_topping = Topping("Pearls", store.prices)
+    cookie_topping = Topping("Cookie Crumb", store.prices)
+    mixed_jellies_topping = Topping("Mixed Jellies", store.prices)
+    herbal_jelly_topping = Topping("Herbal Jelly", store.prices)
+    coconut_jelly_topping = Topping("CoconutJelly", store.prices)
+    aloe_vera_topping = Topping("Aloe Vera", store.prices)
+    mango_popping_pearls_topping = Topping("Mango Popping Pearls", store.prices)
+    strawberry_popping_perals_topping = Topping("Strawberry Popping Pearls", store.prices)
+    apple_popping_pearls_topping = Topping("Apple Popping Pearls", store.prices)
+
 
     print("|=================================================================================================|\n")
     print("|                    ░█▀▀█ ░█─░█ ░█▀▀█ ░█▀▀█ ░█─── ░█▀▀▀ 　 ▀▀█▀▀ ░█▀▀▀ ─█▀▀█                     |")
@@ -251,13 +264,19 @@ def main():
     print("|                    ░█▄▄█ ─▀▄▄▀ ░█▄▄█ ░█▄▄█ ░█▄▄█ ░█▄▄▄ 　 ─░█── ░█▄▄▄ ░█─░█                     |\n")
     print("|=================================================================================================|")
 
-    store.order_tea(FruitTea, "Tropical Fruit Tea", "Large", "Regular", "Full", "Green", [strawberry_topping, lychee_topping])
-    store.order_tea(MilkTea, "Classic Milk Tea", "Medium", "Less", "Half", "Black", [lychee_topping])
-    store.order_tea(SparklingTea, "Sparkling Lemon Tea", "Small", "Full", "Full", "Green", [mango_topping])
-    store.order_tea(HotTea, "Hot Earl Grey Tea", "Large", "None", "None", "Black", [])
-    store.order_tea(FrozenTea, "Frozen Mango Tea", "Medium", "Regular", "Full", "Green", [mango_topping])
+   #  print("                    TYPE OF TEA          SIZE   LEVEL OF ICE  LEVEL OF SUGAR   GREEN OR BLACK TEA         TOPPINGS")
+   # displaying store orders
+    store.order_tea(FruitTea, "Tropical Fruit Tea", "Large", "Regular", "Full", "Green", [apple_popping_pearls_topping])
+    store.order_tea(MilkTea, "Classic Milk Tea", "Medium", "Less", "Half", "Black", [custard_topping])
+    store.order_tea(SparklingTea, "Sparkling Lemon Tea", "Small", "Full", "Full", "Green", [mixed_jellies_topping])
+    store.order_tea(HotTea, "Hot Earl Grey Tea", "Large", "None", "None", "Black", [mousse_topping])
+    store.order_tea(FrozenTea, "Frozen Mango Tea", "Medium", "Regular", "Full", "Green", [mango_popping_pearls_topping])
     
-    store.order_tea(FruitTea, "Tropical Fruit Tea", "Large", "Regular", "Full", "Green", [mango_topping, lychee_topping])
+    store.order_tea(FruitTea, "Mango Coconut Fruit Tea", "Large", "Regular", "Full", "Green", [mango_popping_pearls_topping, coconut_jelly_topping])
+    store.order_tea(MilkTea, "Classic Cookie Milk Tea", "Medium", "Less", "Half", "Black", [cookie_topping])
+    store.order_tea(SparklingTea, "Sparkling Herbal Lemon Tea", "Small", "Full", "Full", "Green", [pearls_topping, herbal_jelly_topping] )
+    store.order_tea(HotTea, "Hot Earl Grey Mousse Tea", "Large", "None", "None", "Black", [mousse_topping])
+    store.order_tea(FrozenTea, "Frozen Aloe Vera Strawberry Tea", "Medium", "Regular", "Full", "Green", [aloe_vera_topping, strawberry_popping_perals_topping])
 
     # display store
     print(store)
