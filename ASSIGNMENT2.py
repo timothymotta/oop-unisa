@@ -182,7 +182,7 @@ class Topping:
 
     # string converter, converts name and price to string, price is 2 decimal places
     def __str__(self):
-        return f'{self.name} (${self.price:.2f})'
+        return f"{self.name} (${self.price:.2f})"
 
 # class for store, contains functions that order and/or create tea, contains dictoionary for prices and empty list for orders
 class Store:
@@ -239,7 +239,7 @@ class Store:
 
     # string converter 
     def __str__(self):
-        return f'Total Earnings: \n${self.earnings:.2f}, \n\nTotal Orders: \n{len(self.orders)}\n'
+        return f"TOTAL EARNINGS: \n${self.earnings:.2f}, \n\nTOTAL ORDERS: \n{len(self.orders)}\n"
     
 def main():
     store = Store()
@@ -264,14 +264,12 @@ def main():
     print("|                    ░█▄▄█ ─▀▄▄▀ ░█▄▄█ ░█▄▄█ ░█▄▄█ ░█▄▄▄ 　 ─░█── ░█▄▄▄ ░█─░█                     |\n")
     print("|=================================================================================================|")
 
-   #  print("                    TYPE OF TEA          SIZE   LEVEL OF ICE  LEVEL OF SUGAR   GREEN OR BLACK TEA         TOPPINGS")
    # displaying store orders
     store.order_tea(FruitTea, "Tropical Fruit Tea", "Large", "Regular", "Full", "Green", [apple_popping_pearls_topping])
     store.order_tea(MilkTea, "Classic Milk Tea", "Medium", "Less", "Half", "Black", [custard_topping])
     store.order_tea(SparklingTea, "Sparkling Lemon Tea", "Small", "Full", "Full", "Green", [mixed_jellies_topping])
     store.order_tea(HotTea, "Hot Earl Grey Tea", "Large", "None", "None", "Black", [mousse_topping])
     store.order_tea(FrozenTea, "Frozen Mango Tea", "Medium", "Regular", "Full", "Green", [mango_popping_pearls_topping])
-    
     store.order_tea(FruitTea, "Mango Coconut Fruit Tea", "Large", "Regular", "Full", "Green", [mango_popping_pearls_topping, coconut_jelly_topping])
     store.order_tea(MilkTea, "Classic Cookie Milk Tea", "Medium", "Less", "Half", "Black", [cookie_topping])
     store.order_tea(SparklingTea, "Sparkling Herbal Lemon Tea", "Small", "Full", "Full", "Green", [pearls_topping, herbal_jelly_topping] )
@@ -282,5 +280,6 @@ def main():
     print(store)
     store.view_order_history()
 
+# calling main function
 if __name__ == "__main__":
     main()
