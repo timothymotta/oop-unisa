@@ -9,10 +9,12 @@ import pytest
 from frozentea import FrozenTea
 from topping import Topping
 
+# creating fixture to compare results with
 @pytest.fixture
 def frozen_tea():
     return FrozenTea("Frozen Mango Tea", "Medium", "Regular", "Full", "Green", [])
 
+# testing the calculate price function for frozentea
 def test_calculate_price(frozen_tea):
     frozen_tea.toppings.append(Topping("Mango Popping Pearls", {"TOPPINGS": {"Mango Popping Pearls": 0.4}}))
     price = frozen_tea.calculate_price()

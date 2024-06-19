@@ -14,6 +14,7 @@ from topping import Topping
 def milk_tea():
     return MilkTea("Classic Milk Tea", "Medium", "Less", "Half", "Black", [])
 
+# testing calculate price function for milktea
 def test_calculate_price(milk_tea):
     milk_tea.toppings.append(Topping("Custard", {"TOPPINGS": {"Custard": 1.0}}))
     price = milk_tea.calculate_price()

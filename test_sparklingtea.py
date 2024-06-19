@@ -13,6 +13,7 @@ from topping import Topping
 def sparkling_tea():
     return SparklingTea("Sparkling Lemon Tea", "Small", "Full", "Full", "Green", [])
 
+# testing calculate price for sparkling tea
 def test_calculate_price(sparkling_tea):
     sparkling_tea.toppings.append(Topping("Mixed Jellies", {"TOPPINGS": {"Mixed Jellies": 0.35}}))
     price = sparkling_tea.calculate_price()

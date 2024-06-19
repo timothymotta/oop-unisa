@@ -10,10 +10,12 @@ import pytest
 from fruittea import FruitTea
 from topping import Topping
 
+# fixture to compare results with
 @pytest.fixture
 def fruit_tea():
     return FruitTea("Tropical Fruit Tea", "Large", "Regular", "Full", "Green", [])
 
+# testing calculate price function for fruittea
 def test_calculate_price(fruit_tea):
     fruit_tea.toppings.append(Topping("Mango", {"TOPPINGS": {"Mango": 0.3}}))
     price = fruit_tea.calculate_price()

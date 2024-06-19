@@ -18,6 +18,7 @@ from topping import Topping
 def store():
     return Store()
 
+# testing order tea function
 def test_order_tea(store):
     topping = Topping("Custard", store.prices)
     tea = store.order_tea(FruitTea, "Tropical Fruit Tea", "Large", "Regular", "Full", "Green", [topping])
@@ -25,6 +26,7 @@ def test_order_tea(store):
     assert store.earnings == tea.calculate_price()
     assert len(store.orders) == 1
 
+# testing the order history
 def test_view_order_history(store, capsys):
     topping = Topping("Custard", store.prices)
     store.order_tea(FruitTea, "Tropical Fruit Tea", "Large", "Regular", "Full", "Green", [topping])
@@ -32,5 +34,6 @@ def test_view_order_history(store, capsys):
     captured = capsys.readouterr()
     assert "Tropical Fruit Tea" in captured.out
 
+# testing string converter
 def test_store_str(store):
     assert str(store) == "TOTAL EARNINGS: \n$0.00, \n\nTOTAL ORDERS: \n0\n"

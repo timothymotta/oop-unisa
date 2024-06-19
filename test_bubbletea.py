@@ -12,7 +12,8 @@ class TestBubbleTea:
     class MockBubbleTea(BubbleTea):
         def calculate_price(self):
             return 10.0
-
+        
+    # creating fixture to compare results with
     @pytest.fixture
     def bubble_tea(self):
         return self.MockBubbleTea("Test Tea", "Large", "Full", "Full", "Green", [])
@@ -25,6 +26,7 @@ class TestBubbleTea:
         assert bubble_tea.green_or_black_tea == "Green"
         assert bubble_tea.toppings == []
 
+    # testing the add and remove toppings functions
     def test_add_topping(self, bubble_tea):
         bubble_tea.add_topping("Pearls")
         assert "Pearls" in bubble_tea.toppings
